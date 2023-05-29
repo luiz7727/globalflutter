@@ -12,7 +12,7 @@ class _AnalisesPageState extends State<AnalisesPage> {
 
   final List<AnaliseImage> imageResults = [
     AnaliseImage(
-      '../assets/image1.jpg', // Caminho da imagem
+      'assets/image1.jpg', // Caminho da imagem
       'Trigo', // Identificação da cultura
       'N/A', // Detecção de pragas e doenças
       'Deficiência de nitrogênio', // Deficiência de nutrientes
@@ -20,7 +20,7 @@ class _AnalisesPageState extends State<AnalisesPage> {
       'Aplicar fertilizante nitrogenado e aumentar a irrigação', // Recomendações
     ),
     AnaliseImage(
-      '../assets/image1.jpg', // Caminho da imagem
+      'assets/image1.jpg', // Caminho da imagem
       'Trigo', // Identificação da cultura
       'N/A', // Detecção de pragas e doenças
       'Deficiência de nitrogênio', // Deficiência de nutrientes
@@ -28,16 +28,16 @@ class _AnalisesPageState extends State<AnalisesPage> {
       'Aplicar fertilizante nitrogenado e aumentar a irrigação', // Recomendações
     ),
     AnaliseImage(
-      '../assets/image1.jpg', // Caminho da imagem
+      'assets/image1.jpg', // Caminho da imagem
       'Trigo', // Identificação da cultura
       'N/A', // Detecção de pragas e doenças
       'Deficiência de nitrogênio', // Deficiência de nutrientes
       'Alta necessidade de irrigação', // Necessidade de irrigação
       'Aplicar fertilizante nitrogenado e aumentar a irrigação', // Recomendações
     ),
-
     // Adicione mais resultados de análise de imagem conforme necessário
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,8 +52,8 @@ class _AnalisesPageState extends State<AnalisesPage> {
             return ListTile(
               leading: Image.asset(
                 result.imagePath,
-                width: 60,
-                height: 60,
+                width: 250,
+                height: 250,
               ),
               title: Text('Cultura: ${result.cropIdentification}'),
               subtitle: Column(

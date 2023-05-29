@@ -9,33 +9,56 @@ class HistoricoPage extends StatefulWidget {
 }
 
 class _HistoricoPageState extends State<HistoricoPage> {
-
   List<AnaliseImageHistorico> imageResults = [
     AnaliseImageHistorico(
-      "../assets/image1.jpg",
-      "eu nao sei",
+      "assets/image1.jpg",
+      "Mexicana",
       "asdasdasdad",
       "asdsadasd",
       "asdasdasdasd",
-      "asdasdasd"
+      "asdasdasd",
     ),
     AnaliseImageHistorico(
-        "../assets/image2.jpg",
-        "eu nao sei",
-        "asdasdasdad",
-        "asdsadasd",
-        "asdasdasdasd",
-        "asdasdasd"
+      "assets/image2.jpg",
+      "Japonesa",
+      "asdasdasdad",
+      "asdsadasd",
+      "asdasdasdasd",
+      "asdasdasd",
     ),
     AnaliseImageHistorico(
-        "../assets/image3.jpg",
-        "eu nao sei",
-        "asdasdasdad",
-        "asdsadasd",
-        "asdasdasdasd",
-        "asdasdasd"
-    )
+      "assets/image3.jpg",
+      "Brasileira",
+      "asdasdasdad",
+      "asdsadasd",
+      "asdasdasdasd",
+      "asdasdasd",
+    ),
   ];
+
+  List<AnaliseImageHistorico> filteredResults = [];
+
+  @override
+  void initState() {
+    super.initState();
+    filteredResults.addAll(imageResults);
+  }
+
+  void filterResults(String query) {
+    if (query.isNotEmpty) {
+      setState(() {
+        filteredResults = imageResults
+            .where((result) =>
+            result.cropIdentification.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+      });
+    } else {
+      setState(() {
+        filteredResults.clear();
+        filteredResults.addAll(imageResults);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,35 +66,50 @@ class _HistoricoPageState extends State<HistoricoPage> {
       appBar: AppBar(
         title: Text("CodeShark App"),
       ),
-      body: ListView.builder(
-        itemCount: imageResults.length,
-        itemBuilder: (context, index) {
-          final result = imageResults[index];
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              onChanged: (value) => filterResults(value),
+              decoration: InputDecoration(
+                labelText: 'Search',
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: filteredResults.length,
+              itemBuilder: (context, index) {
+                final result = filteredResults[index];
 
-          return ListTile(
-            leading: Image.asset(
-              result.imagePath,
-              width: 60,
-              height: 60,
+                return ListTile(
+
+                  leading: SizedBox(
+                    width: 250,
+                    height: 250,
+                    child: Image.asset(
+                      result.imagePath,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  title: Text('Cultura: ${result.cropIdentification}'),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Pragas e doenças: ${result.pestsAndDiseases}'),
+                      Text('Deficiência de nutrientes: ${result.nutrientDeficiency}'),
+                      Text('Necessidade de irrigação: ${result.irrigationNeed}'),
+                      Text('Recomendações: ${result.recommendations}'),
+                    ],
+                  ),
+                );
+              },
             ),
-            title: Text('Cultura: ${result.cropIdentification}'),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Pragas e doenças: ${result.pestsAndDiseases}'),
-                Text('Deficiência de nutrientes: ${result.nutrientDeficiency}'),
-                Text('Necessidade de irrigação: ${result.irrigationNeed}'),
-                Text('Recomendações: ${result.recommendations}'),
-              ],
-            ),
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Abre a tela de captura de imagem e análise
-        },
-        child: Icon(Icons.camera_alt),
+          ),
+        ],
       ),
     );
   }

@@ -12,9 +12,9 @@ class ImagensPage extends StatefulWidget {
 class _ImagensPageState extends State<ImagensPage> {
 
   final List<DroneImage> droneImages = [
-    DroneImage('../assets/image1.jpg', 40.712776, -74.005974),
-    DroneImage('../assets/image2.jpg', 51.5074, -0.1278),
-    DroneImage('../assets/image3.jpg', 48.8566, 2.3522),
+    DroneImage('assets/image1.jpg', 40.712776, -74.005974),
+    DroneImage('assets/image2.jpg', 51.5074, -0.1278),
+    DroneImage('assets/image3.jpg', 48.8566, 2.3522),
   ];
 
   @override

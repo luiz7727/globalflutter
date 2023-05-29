@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:globalflutter/componentes/nav_bar.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -12,29 +11,28 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: NavBar(),
       appBar: AppBar(
-        title: Text("CodeShark App"),
+        title: const Text("CodeShark App"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Bem-vindo à Dashboard',
+            const Text(
+              'Melhoria da qualidade da planta',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10),
-            Text(
-              'Subtítulo da Dashboard',
+            const SizedBox(height: 10),
+            const Text(
+              'Explore os benefícios de usar drones para monitoranmento, análises e etc em plantações com alta qualidade',
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Image.asset(
-              'assets/dashboard_image.png', // Coloque o caminho da imagem aqui
+              '../assets/drone.jpg',
               width: 200,
               height: 200,
             ),

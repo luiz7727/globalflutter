@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:globalflutter/pages/dashboard_page.dart';
+import 'package:globalflutter/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: DashboardPage(),
+      home: HomePage(),
     );
   }
 

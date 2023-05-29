@@ -17,6 +17,7 @@ class _AnalisesPageState extends State<AnalisesPage> {
       'Deficiência de nitrogênio', // Deficiência de nutrientes
       'Alta necessidade de irrigação', // Necessidade de irrigação
       'Aplicar fertilizante nitrogenado e aumentar a irrigação', // Recomendações
+      false, // Button state (initially uncollected)
     ),
     AnaliseImage(
       'assets/image2.jpg', // Caminho da imagem
@@ -25,6 +26,7 @@ class _AnalisesPageState extends State<AnalisesPage> {
       'Deficiência de nitrogênio', // Deficiência de nutrientes
       'Alta necessidade de irrigação', // Necessidade de irrigação
       'Aplicar fertilizante nitrogenado e aumentar a irrigação', // Recomendações
+      false, // Button state (initially uncollected)
     ),
     AnaliseImage(
       'assets/image3.jpg', // Caminho da imagem
@@ -33,6 +35,7 @@ class _AnalisesPageState extends State<AnalisesPage> {
       'Deficiência de nitrogênio', // Deficiência de nutrientes
       'Alta necessidade de irrigação', // Necessidade de irrigação
       'Aplicar fertilizante nitrogenado e aumentar a irrigação', // Recomendações
+      false, // Button state (initially uncollected)
     ),
     // Adicione mais resultados de análise de imagem conforme necessário
   ];
@@ -41,7 +44,7 @@ class _AnalisesPageState extends State<AnalisesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("CodeShark App"),
+        title: const Text("CodeShark App"),
       ),
       body: ListView.builder(
         itemCount: imageResults.length,
@@ -56,22 +59,47 @@ class _AnalisesPageState extends State<AnalisesPage> {
                 SizedBox(
                   width: double.infinity,
                   height: 250,
-                  child: Image.asset(
-                    result.imagePath,
-                    fit: BoxFit.cover,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Image.asset(
+                        result.imagePath,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
+                      ),
+                      Positioned(
+                        bottom: 10,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              result.isReadyForCollection =
+                              !result.isReadyForCollection;
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(primary: result.isReadyForCollection == true ? Colors.green : Colors.red,
+                          ),
+                          child: Text(
+                            result.isReadyForCollection
+                                ? 'Pronto'
+                                : 'Crescendo',
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text('Cultura: ${result.cropIdentification}'),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text('Pragas e doenças: ${result.pestsAndDiseases}'),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text('Deficiência de nutrientes: ${result.nutrientDeficiency}'),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text('Necessidade de irrigação: ${result.irrigationNeed}'),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text('Recomendações: ${result.recommendations}'),
-                Divider(),
+                const Divider(),
               ],
             ),
           );

@@ -5,6 +5,7 @@ class AnaliseImage {
   final String nutrientDeficiency;
   final String irrigationNeed;
   final String recommendations;
+  bool isReadyForCollection;
 
   AnaliseImage(
       this.imagePath,
@@ -12,5 +13,7 @@ class AnaliseImage {
       this.pestsAndDiseases,
       this.nutrientDeficiency,
       this.irrigationNeed,
-      this.recommendations,);
+      this.recommendations,
+      this.isReadyForCollection,
+      );
 }

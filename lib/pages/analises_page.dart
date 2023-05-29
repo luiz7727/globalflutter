@@ -9,7 +9,6 @@ class AnalisesPage extends StatefulWidget {
 }
 
 class _AnalisesPageState extends State<AnalisesPage> {
-
   final List<AnaliseImage> imageResults = [
     AnaliseImage(
       'assets/image1.jpg', // Caminho da imagem
@@ -20,7 +19,7 @@ class _AnalisesPageState extends State<AnalisesPage> {
       'Aplicar fertilizante nitrogenado e aumentar a irrigação', // Recomendações
     ),
     AnaliseImage(
-      'assets/image1.jpg', // Caminho da imagem
+      'assets/image2.jpg', // Caminho da imagem
       'Trigo', // Identificação da cultura
       'N/A', // Detecção de pragas e doenças
       'Deficiência de nitrogênio', // Deficiência de nutrientes
@@ -28,7 +27,7 @@ class _AnalisesPageState extends State<AnalisesPage> {
       'Aplicar fertilizante nitrogenado e aumentar a irrigação', // Recomendações
     ),
     AnaliseImage(
-      'assets/image1.jpg', // Caminho da imagem
+      'assets/image3.jpg', // Caminho da imagem
       'Trigo', // Identificação da cultura
       'N/A', // Detecção de pragas e doenças
       'Deficiência de nitrogênio', // Deficiência de nutrientes
@@ -44,30 +43,40 @@ class _AnalisesPageState extends State<AnalisesPage> {
       appBar: AppBar(
         title: Text("CodeShark App"),
       ),
-        body: ListView.builder(
-          itemCount: imageResults.length,
-          itemBuilder: (context, index) {
-            final result = imageResults[index];
+      body: ListView.builder(
+        itemCount: imageResults.length,
+        itemBuilder: (context, index) {
+          final result = imageResults[index];
 
-            return ListTile(
-              leading: Image.asset(
-                result.imagePath,
-                width: 250,
-                height: 250,
-              ),
-              title: Text('Cultura: ${result.cropIdentification}'),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Pragas e doenças: ${result.pestsAndDiseases}'),
-                  Text('Deficiência de nutrientes: ${result.nutrientDeficiency}'),
-                  Text('Necessidade de irrigação: ${result.irrigationNeed}'),
-                  Text('Recomendações: ${result.recommendations}'),
-                ],
-              ),
-            );
-          },
-        )
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: 250,
+                  child: Image.asset(
+                    result.imagePath,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                SizedBox(height: 8),
+                Text('Cultura: ${result.cropIdentification}'),
+                SizedBox(height: 4),
+                Text('Pragas e doenças: ${result.pestsAndDiseases}'),
+                SizedBox(height: 4),
+                Text('Deficiência de nutrientes: ${result.nutrientDeficiency}'),
+                SizedBox(height: 4),
+                Text('Necessidade de irrigação: ${result.irrigationNeed}'),
+                SizedBox(height: 4),
+                Text('Recomendações: ${result.recommendations}'),
+                Divider(),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

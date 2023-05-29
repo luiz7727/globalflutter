@@ -85,24 +85,30 @@ class _HistoricoPageState extends State<HistoricoPage> {
               itemBuilder: (context, index) {
                 final result = filteredResults[index];
 
-                return ListTile(
-
-                  leading: SizedBox(
-                    width: 250,
-                    height: 250,
-                    child: Image.asset(
-                      result.imagePath,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  title: Text('Cultura: ${result.cropIdentification}'),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      SizedBox(
+                        width: double.infinity,
+                        height: 250,
+                        child: Image.asset(
+                          result.imagePath,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      Text('Cultura: ${result.cropIdentification}'),
+                      SizedBox(height: 4),
                       Text('Pragas e doenças: ${result.pestsAndDiseases}'),
+                      SizedBox(height: 4),
                       Text('Deficiência de nutrientes: ${result.nutrientDeficiency}'),
+                      SizedBox(height: 4),
                       Text('Necessidade de irrigação: ${result.irrigationNeed}'),
+                      SizedBox(height: 4),
                       Text('Recomendações: ${result.recommendations}'),
+                      Divider(),
                     ],
                   ),
                 );
